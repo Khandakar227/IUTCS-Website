@@ -1,7 +1,8 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
 import { connect } from "mongoose";
 import cors from "cors";
+import registrationRoutes from "./routes/Registration";
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ connect(process.env.MONGODB_URL as string, {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/v1/register", registrationRoutes);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
