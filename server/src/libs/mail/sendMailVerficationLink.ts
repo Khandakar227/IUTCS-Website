@@ -15,8 +15,8 @@ const sendMailVerficationLink = (regId:string, email:string) => {
         subject: 'Verify your email',
         html: `
         <p>Your registration is pending. please verify your email to confirm registration.</p>
-        <p> <a href="${process.env.CLIENT_URL}/${urlPath(regId)}" target="blank">
-            ${process.env.CLIENT_URL}/${urlPath(regId)}</a>
+        <p> <a href="${process.env.CLIENT_URL}/register/verify/${urlPath(regId)}" target="blank">
+            ${process.env.CLIENT_URL}/register/verify/${urlPath(regId)}</a>
         </p>
         `
       };

@@ -3,9 +3,12 @@ import Registration from "../model/Registration";
 import sendMailVerficationLink from "../libs/mail/sendMailVerficationLink";
 import { JwtPayload, verify } from "jsonwebtoken";
 import Participant from "../model/Participant";
+import { startSession } from "mongoose";
 
 export const getRegistration = async (req: Request, res: Response) => {
   try {
+    const registrations = await Registration.find();
+    res.status(200).json({error: false, registrations});
   } catch (err) {
     const error = err as Error;
     console.log(error.message);
@@ -21,28 +24,27 @@ export const createRegistration = async (req: Request, res: Response) => {
   try {
     const { team_name, team_members, email, phone_number, university } =
       req.body;
-    // Express validator error handler
-    const team_mates: { email: string; name: string; phone_number: string }[] =
-      team_members;
-    // const team_members_id = await Promise.all(
-    //   team_mates.map(async (member) => {
-    //     const p = await Participant.create({...member, university});
-    //     // await p.save();
-    //     return p._id;
-    //   })
-    // );
-
-    // // Add to db, then send an email verification link
-    // const registration = await Registration.create({
-    //   team_name,
-    //   team_members: team_members_id,
-    //   phone_number,
-    //   email,
-    //   university,
-    //   status: "pending",
-    // });
-    // await registration.save();
-    // // sendMailVerficationLink(registration._id.toString(), email);
+      
+    const team_mates: { email: string; name: string; phone_number: string }[] = team_members;
+    
+    const team_members_id = await Promise.all(
+      team_mates.map(async (member) => {
+        const p = await Participant.create({...member, university});
+        await p.save();
+        return p._id;
+      })
+    );
+    // Add to db, then send an email verification link
+    const registration = await Registration.create({
+      team_name,
+      team_members: team_members_id,
+      phone_number,
+      email,
+      university,
+      status: "pending",
+    });
+    await registration.save();
+    // sendMailVerficationLink(registration._id.toString(), email);
     res
       .status(200)
       .json({
@@ -54,7 +56,7 @@ export const createRegistration = async (req: Request, res: Response) => {
     console.log(error.message);
     res
       .status(500)
-      .json({ error: true, message: `Registration failed. ${error.message}` });
+      .json({ error: true, message: `There was an error. ${error.message}` });
   }
 };
 
@@ -93,3 +95,22 @@ export const verifyEmail = async (req: Request, res: Response) => {
       .json({ error: true, message: `Verification failed. ${error.message}` });
   }
 };
+
+
+export async function sendVerifyEmail (req: Request, res: Response) {
+  try {
+    const { email } = req.params;
+    // check if a registration exist with the email.
+    // then send verification link email.
+    const reg = await Registration.findOne({ email });
+    if (reg)
+      sendMailVerficationLink(reg._id.toString(), email);
+    res.status(200).json({error: false, message: "Verification mail sent"});
+  } catch (err) {
+      const error = err as Error;
+      console.log(error.message);
+      res
+        .status(500)
+        .json({ error: true, message: `There was an error. ${error.message}` });
+  }
+}

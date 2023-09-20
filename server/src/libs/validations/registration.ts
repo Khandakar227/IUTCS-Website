@@ -2,15 +2,14 @@ import { body, check } from "express-validator";
 import Registration from "../../model/Registration";
 import Participant from "../../model/Participant";
 
-type ParticipantType = {
-  name: string;
-  email: string;
-  phone_number: string;
-  university: string;
-};
-
 export const registrationValidations = [
-  body("team_name").exists().withMessage("Team name is required"),
+  body("team_name").exists()
+  .custom(async (value) => {
+    const team_name = await Registration.findOne({ team_name: value });
+    if(team_name) throw new Error("This team name is already used try something unique");
+    return true;
+  })
+  .withMessage("This team name is already used try something unique"),
 
   body("university")
     .exists()
@@ -22,9 +21,10 @@ export const registrationValidations = [
 
   check("email")
     .custom(async (value) => {
-      return (await Registration.findOne({ email: value })) ? true : false;
-    })
-    .withMessage("Already registered using this email"),
+      const email = await Registration.findOne({ email: value });
+      if(email) throw new Error("The email was previously used for registration");
+      return true;
+    }).withMessage("The email was previously used for registration"),
 
   body("team_members").exists().isArray({ min: 1, max: 4 })
     .withMessage("Please ensure you have at least 1 team member and a maximum of 4 team members."),
@@ -34,33 +34,18 @@ export const registrationValidations = [
   check("team_members.*.email").exists().isEmail()
   .custom(async(v) => {
     const ifEmailExist = await Participant.findOne({email: v});
-    if (ifEmailExist) throw new Error("Phone number is already used");
+    if (ifEmailExist)
+      throw new Error("Email is already used");
     return true;
-  })
-  .withMessage("Invalid team mate email or email is already used"),
+  }).withMessage("Invalid team mate email or email is already used"),
  
   check("team_members.*.phone_number").custom(async(v) => {
     if(!(/^(01|\+8801)\d{9}$/.test(v))) throw new Error("Invalid phone number");
       const ifPhoneNumExist = await Participant.findOne({phone_number: v});
-      if (ifPhoneNumExist) throw new Error("Phone number is already used");
+      if (ifPhoneNumExist)
+        throw new Error("Phone number is already used");
       return true;
-    })
-    .withMessage("Invalid phone number or phone number is already used"),
+    }).withMessage("Invalid phone number or phone number is already used"),
   ];
   // TODO
   // temporarily hard coded max min members, may need to set them to db
-
-  // check("team_members")
-  //   .custom(async(v: ParticipantType[]) => {
-  //     const validate = v.map(async (member) => {
-  //       if (!member.name) return false;
-  //       if (!(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(member.email))) return false;
-  //       if (!(/^(01|\+8801)\d{9}$/).test(member.phone_number)) return false;
-  //       const ifPhoneNumExist = await Participant.findOne({phone_number: member.phone_number});
-  //       const ifEmailExist = await Participant.findOne({email: member.email})
-  //       if (ifEmailExist || ifPhoneNumExist) return false;
-  //       return true;
-  //     });
-      
-  //     return (await Promise.all(validate)).includes(true); // returns true if all are true
-  //   }),
