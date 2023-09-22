@@ -32,20 +32,26 @@ export const registrationValidations = [
   body("team_members.*.name").exists().withMessage("Missing team mate name"),
  
   check("team_members.*.email").exists().isEmail()
-  .custom(async(v) => {
-    const ifEmailExist = await Participant.findOne({email: v});
-    if (ifEmailExist)
-      throw new Error("Email is already used");
-    return true;
-  }).withMessage("Invalid team mate email or email is already used"),
+  // .custom(async(v) => {
+  //   const ifEmailExist = await Participant.findOne({email: v});
+  //   if (ifEmailExist)
+  //     throw new Error("Email is already used");
+  //   return true;
+  // })
+  .withMessage("Invalid team mate email or email is already used"),
  
   check("team_members.*.phone_number").custom(async(v) => {
     if(!(/^(01|\+8801)\d{9}$/.test(v))) throw new Error("Invalid phone number");
-      const ifPhoneNumExist = await Participant.findOne({phone_number: v});
-      if (ifPhoneNumExist)
-        throw new Error("Phone number is already used");
+      // const ifPhoneNumExist = await Participant.findOne({phone_number: v});
+      // if (ifPhoneNumExist)
+      //   throw new Error("Phone number is already used");
       return true;
-    }).withMessage("Invalid phone number or phone number is already used"),
+    })
+    .withMessage("Invalid phone number or phone number is already used"),
   ];
   // TODO
   // temporarily hard coded max min members, may need to set them to db
+
+  // TODO
+  // check if event object id exist inside participant documents. if so that means
+  // same person in same event but 2 different team

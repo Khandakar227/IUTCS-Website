@@ -3,7 +3,6 @@ import Registration from "../model/Registration";
 import sendMailVerficationLink from "../libs/mail/sendMailVerficationLink";
 import { JwtPayload, verify } from "jsonwebtoken";
 import Participant from "../model/Participant";
-import { startSession } from "mongoose";
 
 export const getRegistration = async (req: Request, res: Response) => {
   try {
@@ -20,16 +19,17 @@ export const getRegistration = async (req: Request, res: Response) => {
       });
   }
 };
+
 export const createRegistration = async (req: Request, res: Response) => {
   try {
     const { team_name, team_members, email, phone_number, university } =
       req.body;
-      
+    const { event_id } = req.params;
     const team_mates: { email: string; name: string; phone_number: string }[] = team_members;
     
     const team_members_id = await Promise.all(
       team_mates.map(async (member) => {
-        const p = await Participant.create({...member, university});
+        const p = await Participant.create({...member, university, event: event_id});
         await p.save();
         return p._id;
       })
@@ -41,6 +41,7 @@ export const createRegistration = async (req: Request, res: Response) => {
       phone_number,
       email,
       university,
+      event: event_id,
       status: "pending",
     });
     await registration.save();
