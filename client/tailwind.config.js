@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"],
-        "noto-sans": ["Noto Sans Bengali", "sans-serif"],
+        poppins: ['Poppins', 'system-ui', 'sans-serif'],
+        kanit: ['Kanit', 'sans-serif']
       },
       colors: {
         primary: '#04080b',
