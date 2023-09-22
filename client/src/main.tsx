@@ -9,23 +9,29 @@ import Home from './pages/Home.tsx';
 import About from './pages/About.tsx';
 import Achievement from './pages/Achievement.tsx';
 import Activities from './pages/Activities.tsx';
+import Layout from './components/Layout.tsx';
+import ExecutiveCommittee from './pages/ExecutiveCommittee.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <Layout><Home/></Layout>,
   },
   {
     path: "/about",
-    element: <About/>,
+    element: <Layout><About/></Layout>,
   },
   {
     path: "/activities",
-    element: <Activities/>,
+    element: <Layout><Activities/></Layout>,
   },
   {
     path: "/achievements",
-    element: <Achievement/>,
+    element: <Layout><Achievement/></Layout>,
+  },
+  {
+    path: "/executives",
+    element: <Layout><ExecutiveCommittee/></Layout>,
   }
 ]);
 

@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        "noto-sans": ["Noto Sans Bengali", "sans-serif"],
+      },
       colors: {
         primary: '#04080b',
         secondary: '#0F1E34'
