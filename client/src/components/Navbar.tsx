@@ -11,7 +11,7 @@ const NavLinks = [
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 p-3 rounded-b-md rounded-bl-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-800">
+    <nav className="sticky top-0 z-10 p-3 rounded-b-md rounded-bl-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-800">
       <div className="flex items-center justify-between mx-auto max-w-6xl">
         <div>
           <img className="h-10" src="iutcs-logo.svg" />

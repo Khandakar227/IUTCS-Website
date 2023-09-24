@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <div className="section grid md:grid-cols-2 gap-4 py-24">
+    <div className="section grid md:grid-cols-2 gap-4 py-24 circuit-bg-2">
       <div className="grid items-end">
         <div className="pb-10">
           <p className="text-blue-300">About IUT Computer Society</p>

@@ -11,7 +11,8 @@ export default {
         kanit: ['Kanit', 'sans-serif']
       },
       colors: {
-        primary: '#04080b',
+        "primary-2": "#0b1627",
+        primary: '#040D1B',
         secondary: '#0F1E34'
       }
     },
