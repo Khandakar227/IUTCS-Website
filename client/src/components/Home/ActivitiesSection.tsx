@@ -30,7 +30,7 @@ export default function ActivitiesSection() {
           desc="We teach our new comers and enthusiastic coders how to build cool web applications and android apps. We provide resources and guidelines on Web and App development roadmaps for the students."
           />
         <ActivitiesCard
-         imgSrc="/activities/firmware.svg"
+         imgSrc="/activities/Machine learning.svg"
          heading="Machine Learning and Data Science seminars"
          desc="Explore the fascinating world of machine learning in our specialized sessions. Acquire the skills to build intelligent systems and harness the potential of AI technology."
          right={true}

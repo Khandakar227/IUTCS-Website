@@ -13,7 +13,7 @@ export default function ActivitiesCard(props:ActivitiesProps) {
           <img
             src={props.imgSrc}
             alt="Activities"
-            className="mx-auto max-w-md w-full p-4"
+            className="mx-auto max-w-[22rem] w-full p-4"
           />
           <div className="max-w-lg">
             <h3 className="text-3xl pb-6 font-medium font-kanit">{props.heading}</h3>
