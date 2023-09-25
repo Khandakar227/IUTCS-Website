@@ -43,13 +43,8 @@
     background-position: right;
 }
 .intro-bg {
-    background-image: url("development.jpg");
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: cover;
     max-height: calc(100vh - 66px);
     height: 100%;
-    clip-path: polygon(37% 0, 100% 0, 100% 100%, 0 100%);
 }
 .intro-bg-mobile {
     background-image: url("development.jpg");
@@ -58,4 +53,7 @@
     background-size: cover;
     min-height: 400px;
     height: 100%;
+}
+.clip-path {
+    clip-path: polygon(37% 0, 100% 0, 100% 100%, 0 100%);
 }
