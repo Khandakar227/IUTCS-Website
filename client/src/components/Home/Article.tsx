@@ -18,7 +18,7 @@ function Article(props:ArticleProps) {
           <p className="text-lg font-semibold pt-3 line-clamp-1">{props.title}</p>
           <p className="pt-3 text-sm line-clamp-3">{props.desc}</p>
         </div>
-        <div className="py-2 px-4 grid justify-end items-center">
+        <div className="p-4 grid justify-end items-center">
           <button className="bg-blue-600 px-4 py-1 rounded-full">Read Full</button>
         </div>
     </div>

@@ -4,10 +4,10 @@ export default function BlogSection() {
   return (
     <div className="section py-24">
         <p className="text-blue-300">Blogs</p>
-        <div className="flex md:justify-between justify-center items-center md:grid-cols-2 gap-4">
-            <p className="py-2 font-bold text-4xl font-kanit w-full">Tech Tales, Insights and more</p>
+        <div className="flex md:flex-row flex-col md:justify-between md:items-center md:grid-cols-2 gap-4">
+            <p className="py-2 font-bold md:text-4xl text-3xl font-kanit w-full">Tech Tales, Insights and more</p>
             <div>
-                <button className="bg-blue-600 rounded-full px-4 py-3 min-w-[130px]"> See more </button>
+                <button className="bg-blue-600 rounded-full px-4 py-3 min-w-[130px] md:text-base text-sm"> See more </button>
             </div>
         </div>
         <div className="overflow-auto p-4">

@@ -1,7 +1,7 @@
 export default function AboutSection() {
   return (
     <div className="section grid md:grid-cols-2 gap-4 py-24 circuit-bg-2">
-      <div className="grid items-end">
+      <div className="grid lg:items-end">
         <div className="pb-10">
           <p className="text-blue-300">About IUT Computer Society</p>
           <h2 className="text-4xl font-bold pt-2 pb-6 font-kanit">
