@@ -12,6 +12,7 @@ import Layout from './components/Layout.tsx';
 import ExecutiveCommittee from './pages/ExecutiveCommittee.tsx';
 import './index.css'
 import Contact from './pages/Contact.tsx';
+import CodeRush from './pages/CodeRush.tsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <Layout><Contact/></Layout>,
+  },
+  {
+    path: "/coderush",
+    element: <Layout><CodeRush/></Layout>,
   }
 ]);
 

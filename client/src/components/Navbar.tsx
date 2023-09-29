@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NavLinks = [
   { label: "Home", to: "/" },
@@ -8,14 +8,18 @@ const NavLinks = [
   { label: "Activities", to: "/activities" },
   { label: "Achievements", to: "/achievements" },
   { label: "Executives", to: "/executives" },
-  { label: "Contact", to: "/contact", className: "hover:text-blue-400 transition-all md:px-5 py-2 lg:text-sm md:text-xs" },
+  { label: "Contact", to: "/contact", className: "hover:text-blue-400 transition-all md:px-5 py-2 md:py-0 lg:text-sm md:text-xs" },
   { label: "CodeRush 3.0 Register",
-    to: "/coderush3.0",
-    className: "lg:px-5 px-2 py-2 rounded-2xl bg-blue-600 font-bold md:ml-2 lg:text-sm md:text-xs" },
+    to: "/coderush",
+    className: "my-3 md:my-0 lg:px-5 px-2 py-2 rounded-2xl bg-blue-600 font-bold md:ml-2 lg:text-sm md:text-xs" },
 ];
 
-export default function Navbar() {
+export default function Navbar({currentPath}:{currentPath:string}) {
   const [showMobileNav, setShowNav] = useState(false);
+
+  useEffect(() => {
+    setShowNav(false);
+  }, [currentPath]);
 
   const closeMobileNav = () => setShowNav(false);
   const openMobileNav = () => setShowNav(true);
@@ -29,11 +33,14 @@ export default function Navbar() {
         </div>
         <div>
           <button className="md:hidden" onClick={openMobileNav}><AiOutlineMenu size={24}/></button>
-          <ul className="md:flex gap-2 text-sm hidden">
+          <ul className="md:flex gap-2 text-sm hidden items-center">
             {NavLinks.map((navlink, i) => (
-              <li key={i + navlink.to}>
+              <li
+              key={i + navlink.to}
+              className={`${ navlink.className ? navlink.className : "lg:px-3 px-1 lg:text-sm md:text-xs transition hover:text-blue-400" }`}
+                  >
                 <Link
-                  className={`${ navlink.className ? navlink.className : "lg:px-3 px-1 lg:text-sm md:text-xs transition hover:text-blue-400" }`}
+                  className={currentPath == navlink.to ? "text-blue-300" : ""}
                   to={navlink.to}
                 >
                   {navlink.label}
@@ -50,9 +57,11 @@ export default function Navbar() {
         </div>
         <ul className="pt-16">
           {NavLinks.map((navlink, i) => (
-              <li className="py-3" key={i + navlink.to}>
+              <li
+              className={`${ navlink.className ? navlink.className : "px-1 py-3 transition hover:text-blue-400" }`}
+              key={i + navlink.to}>
                 <Link
-                  className={`${ navlink.className ? navlink.className : "px-1 transition hover:text-blue-400" }`}
+                  className={currentPath == navlink.to ? "text-blue-300 " : ""}
                   to={navlink.to}
                 >
                   {navlink.label}

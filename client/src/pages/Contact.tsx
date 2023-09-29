@@ -1,11 +1,19 @@
 import { MdOutlineAlternateEmail } from 'react-icons/md'
 import { FaUserAlt, FaEdit } from 'react-icons/fa'
+import { FormEvent } from 'react'
 
 export default function Contact() {
+    function onSubmit(e:FormEvent) {
+        e.preventDefault();
+        const formData = new FormData(e.target as HTMLFormElement);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+    }
+
   return (
     <div className="py-24 max-w-3xl mx-auto min-h-screen">
         <h2 className="pb-12 px-4 text-xl md:text-2xl font-bold"> Contact Us </h2>
-        <form className="p-5 rounded-md bg-opacity-5 bg-white">
+        <form onSubmit={onSubmit} className="p-5 rounded-md bg-opacity-5 bg-white">
             <div className="flex py-3 group">
                 <div className='group-focus-within:bg-blue-700 bg-primary flex justify-center items-center p-4'>
                     <FaUserAlt/>
