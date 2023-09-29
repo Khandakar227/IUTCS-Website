@@ -3,12 +3,13 @@ type ArticleProps = {
   title: string,
   desc: string,
   date: string,
-  link: string
+  link: string,
+  delay?: number,
 }
 
 function Article(props:ArticleProps) {
   return (
-    <div className="rounded shadow shadow-gray-800 bg-primary-800 overflow-hidden max-w-xs grid justify-between">
+    <div data-sal="slide-down" data-sal-delay={props.delay} className="rounded shadow shadow-gray-800 bg-primary-800 overflow-hidden max-w-xs grid justify-between">
         <div className="max-h-[240px] overflow-hidden">
           <img src={props.imgSrc} className="max-w-xs w-full"/>
         </div>
@@ -19,7 +20,7 @@ function Article(props:ArticleProps) {
           <p className="pt-3 text-sm line-clamp-3">{props.desc}</p>
         </div>
         <div className="p-4 grid justify-end items-center">
-          <button className="bg-blue-600 px-4 py-1 rounded-full">Read Full</button>
+          <button className="bg-blue-600 px-4 py-1 rounded-full">Read More</button>
         </div>
     </div>
   )
