@@ -11,7 +11,7 @@ export default function IntroSection() {
         </div>
       </div>
 
-      <div>
+      <div className="overflow-hidden">
         <p data-sal="slide-down" data-sal-duration="400" data-sal-delay="600">
         IUT Computer Society, established in 2008 by talented Computer Science
         and Engineering students at Islamic University of Technology (IUT), aims

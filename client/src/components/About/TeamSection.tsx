@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function TeamSection() {
   return (
-    <div className="py-24 section grid md:grid-cols-2 gap-8">
+    <div className="py-24 section grid md:grid-cols-2 gap-8 overflow-hidden">
         <div>
             <p
             className="text-blue-300"

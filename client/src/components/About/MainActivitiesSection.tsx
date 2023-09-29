@@ -3,7 +3,7 @@ import { BiCodeAlt, BiCodeCurly, BiLogoAndroid } from "react-icons/bi";
 
 export default function MainActivitiesSection() {
   return (
-    <div className="py-12 grid gap-8 md:grid-cols-2 section px-4">
+    <div className="py-12 grid gap-8 md:grid-cols-2 section px-4 overflow-hidden">
       <div>
         <p
           className="text-blue-300"

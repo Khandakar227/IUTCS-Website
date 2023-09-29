@@ -1,7 +1,7 @@
 export default function EventSection() {
   return (
     <>
-      <div className="p-24 section grid md:grid-cols-2 gap-8">
+      <div className="py-24 section grid md:grid-cols-2 gap-8 overflow-hidden">
         <div>
           <p className="text-blue-300" data-sal="slide-down" data-sal-duration="400">Events</p>
           <p className="pb-8 text-xl max-w-lg" data-sal="slide-down" data-sal-duration="400" data-sal-delay="300">

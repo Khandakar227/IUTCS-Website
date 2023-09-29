@@ -17,7 +17,7 @@ export default function Footer() {
                     <a className="p-2 m-2" href="/">Home</a>
                     <a className="p-2 m-2" href="/about">About</a>
                     <a className="p-2 m-2" href="/activities">Activities</a>
-                    <a className="p-2 m-2" href="/achievement">Achievement</a>
+                    <a className="p-2 m-2" href="/achievements">Achievement</a>
                     <a className="p-2 m-2" href="/executives">Executives</a>
                 </div>
             </div>
