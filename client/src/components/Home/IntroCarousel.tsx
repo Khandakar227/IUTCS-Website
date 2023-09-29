@@ -40,7 +40,7 @@ export default function IntroCarousel({children}:PropsWithChildren) {
     )
 
     return (
-        <div ref={ref} className="keen-slider">
+        <div ref={ref} className="keen-slider" data-sal="slide-left" data-sal-duration="500" data-sal-delay="1000">
             {children}
         </div>
   )

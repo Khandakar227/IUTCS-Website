@@ -8,7 +8,7 @@ type ArticleProps = {
 
 function Article(props:ArticleProps) {
   return (
-    <div className="rounded shadow shadow-gray-700 overflow-hidden max-w-xs grid justify-between">
+    <div className="rounded shadow shadow-gray-800 bg-primary-800 overflow-hidden max-w-xs grid justify-between">
         <div className="max-h-[240px] overflow-hidden">
           <img src={props.imgSrc} className="max-w-xs w-full"/>
         </div>

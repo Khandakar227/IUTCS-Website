@@ -4,9 +4,9 @@ export default function ActivitiesSection() {
   return (
     <div className="py-24 section">
       <div className="text-center pb-6">
-        <p className="text-blue-300">Activities</p>
-        <p className="font-kanit md:text-4xl text-3xl pb-6 font-bold">Here's a glimpse of what we offer</p>
-        <p className="max-w-4xl mx-auto">
+        <p className="text-blue-300" data-sal="slide-down" data-sal-delay="300">Activities</p>
+        <p className="font-kanit md:text-4xl text-3xl pb-6 font-bold" data-sal="slide-down" data-sal-delay="500">Here's a glimpse of what we offer</p>
+        <p className="max-w-4xl mx-auto" data-sal="slide-down" data-sal-delay="700">
           We're passionate about fostering growth and knowledge sharing in the
           field of computer science. Our dynamic student body organizes a
           diverse range of activities, ensuring there's something for every tech

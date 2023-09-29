@@ -3,12 +3,13 @@ type ActivitiesProps = {
     heading: string,
     desc: string,
     right?: boolean,
+    delay?: number
 }
 
 export default function ActivitiesCard(props:ActivitiesProps) {
   return (
-    <div className={`flex py-6 ${props.right ? "justify-end" : ""} `}>
-      <div className={`rounded bg-primary-2 ${props.right ? "border-r-2 border-r-blue-600" : "border-l-2 border-l-blue-600"} bg-clip-padding border border-gray-800`}>
+    <div className={`flex py-6 ${props.right ? "justify-end" : ""}`} data-sal="slide-down" data-sal-delay={props.delay||300}>
+      <div className={`rounded bg-primary-2 ${props.right ? "border-r-2 border-r-blue-600" : "border-l-2 border-l-blue-600"} bg-clip-padding shadow shadow-black`}>
         <div className={`md:flex items-center gap-4 p-4 ${props.right ? "flex-row-reverse" : ""}`}>
           <img
             src={props.imgSrc}
