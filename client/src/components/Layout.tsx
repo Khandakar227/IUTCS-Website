@@ -10,7 +10,7 @@ export default function Layout({children}:PropsWithChildren) {
     sal({
       root: null,
       threshold: 0.4,
-      once: false
+      once: location.pathname == "/activities" ? true : false
     });
   }, [location])
 
