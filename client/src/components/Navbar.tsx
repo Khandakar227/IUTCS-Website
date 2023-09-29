@@ -19,6 +19,7 @@ export default function Navbar({currentPath}:{currentPath:string}) {
 
   useEffect(() => {
     setShowNav(false);
+    window.scrollTo(0, 0);
   }, [currentPath]);
 
   const closeMobileNav = () => setShowNav(false);

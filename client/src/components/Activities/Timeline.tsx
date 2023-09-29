@@ -4,8 +4,8 @@ import activities from "../../assets/activities.json";
 export default function Timeline() {
   return (
     <div className="py-12 px-4 section">
-        <p className="text-blue-300"> Activities </p>
-        <h3 className="pb-12 text-2xl md:text-4xl font-bold"> IUTCS organizes many events and semonars </h3>
+        <p data-sal="slide-down" className="text-blue-300"> Activities </p>
+        <h3 data-sal="slide-down" data-sal-delay="200" className="pb-12 text-2xl md:text-4xl font-bold"> IUTCS organizes many events and semonars </h3>
         <div>
         {activities.map((activity, i) => (
             <TimelineCard
@@ -44,8 +44,8 @@ const TimelineCard = (props: TimelineCardProps) => {
 
     function onViewMore() {
         setShowLess(!showLess);
-        console.log(imageRef.current.width, imageRef.current.height)
     }
+    
     return (
     <>
     <div className="py-4">

@@ -126,3 +126,18 @@
     border-radius: 999px;
     border: 3px solid orangered;
   }
+  /* Time line in Achievement */
+  .time-line {
+    position: relative;
+    border-left: 4px solid #93C5FD;
+    margin-left: 1rem;
+  }
+  .time-line::after {
+    position: absolute;
+    top: 2rem;
+    left: -1rem;
+    content: "";
+    padding: 14px;
+    background: #2563EB;
+    border-radius: 2rem;
+  }
