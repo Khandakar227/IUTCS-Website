@@ -38,10 +38,10 @@ export default function Navbar({currentPath}:{currentPath:string}) {
             {NavLinks.map((navlink, i) => (
               <li
               key={i + navlink.to}
-              className={`${ navlink.className ? navlink.className : "lg:px-3 px-1 lg:text-sm md:text-xs transition hover:text-blue-400" }`}
+              className={`${ navlink.className ? navlink.className : "lg:px-3 px-1 lg:text-sm md:text-xs" }`}
                   >
                 <Link
-                  className={currentPath == navlink.to ? "text-blue-300" : ""}
+                  className={currentPath == navlink.to ? "text-blue-300 transition hover:text-blue-400" : "transition hover:text-blue-400"}
                   to={navlink.to}
                 >
                   {navlink.label}
@@ -59,10 +59,10 @@ export default function Navbar({currentPath}:{currentPath:string}) {
         <ul className="pt-16">
           {NavLinks.map((navlink, i) => (
               <li
-              className={`${ navlink.className ? navlink.className : "px-1 py-3 transition hover:text-blue-400" }`}
+              className={`${ navlink.className ? navlink.className : "px-1 py-3" }`}
               key={i + navlink.to}>
                 <Link
-                  className={currentPath == navlink.to ? "text-blue-300 " : ""}
+                  className={currentPath == navlink.to ? "text-blue-300 transition hover:text-blue-400" : "transition hover:text-blue-400"}
                   to={navlink.to}
                 >
                   {navlink.label}

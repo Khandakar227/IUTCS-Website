@@ -9,7 +9,7 @@ type ArticleProps = {
 
 function Article(props:ArticleProps) {
   return (
-    <div data-sal="slide-down" data-sal-delay={props.delay} className="rounded shadow shadow-gray-800 bg-primary-800 overflow-hidden max-w-xs grid justify-between">
+    <div data-sal="slide-down" data-sal-delay={props.delay} data-sal-duration="500" className="rounded shadow shadow-gray-800 bg-primary-800 overflow-hidden max-w-xs grid justify-between">
         <div className="max-h-[240px] overflow-hidden">
           <img src={props.imgSrc} className="max-w-xs w-full"/>
         </div>

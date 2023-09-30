@@ -9,6 +9,7 @@
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
+- [TODO](#todo)
 
 ## Features
 
@@ -53,3 +54,12 @@ The project is organized into two main folders:
    git clone https://github.com/Khandakar227/IUTCS-Website.git
    cd IUTCS-Website
 
+
+## TODO
+
+- Overflow on activities page on mobile (due to animations)
+- Executive page
+- Blogs with mardown files
+- Admin panel
+- Admin Panel api
+- Registration page for Intra and Inter IUT Programming Contest (optional: All other contests)

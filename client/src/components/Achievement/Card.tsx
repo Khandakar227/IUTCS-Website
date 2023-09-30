@@ -19,7 +19,7 @@ export default function Card(props:CardPropsType) {
     }
     return (
     <div className="p-4 overflow-hidden">
-        <div className="p-4 rounded-md bg-secondary" data-sal="slide-right" data-sal-delay="400">
+        <div className="p-4 rounded-md bg-secondary" data-sal="slide-right" data-sal-delay="400" data-sal-duration="500">
             <p className="pt-2 pb-4 md:text-lg font-medium text-gray-300">{getDate(props.timestamp)}</p>
             <p className="pt-2 pb-4 md:text-lg whitespace-pre-wrap">{props.description}</p>
         </div>

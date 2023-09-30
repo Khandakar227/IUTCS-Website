@@ -9,7 +9,7 @@ export default function Layout({children}:PropsWithChildren) {
   useLayoutEffect(() => {
     sal({
       root: null,
-      threshold: 0.4,
+      threshold: location.pathname == "/achievements" ? 0.1 : 0.3,
       once: location.pathname == "/activities" ? true : false
     });
   }, [location])
