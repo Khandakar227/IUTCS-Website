@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import Registration from "../model/Registration";
 import sendMailVerficationLink from "../libs/mail/sendMailVerficationLink";
 import { JwtPayload, verify } from "jsonwebtoken";
-import Participant from "../model/Participant";
 
 export const getRegistration = async (req: Request, res: Response) => {
   try {
@@ -25,19 +24,11 @@ export const createRegistration = async (req: Request, res: Response) => {
     const { team_name, team_members, email, phone_number, university } =
       req.body;
     const { event_id } = req.params;
-    const team_mates: { email: string; name: string; phone_number: string }[] = team_members;
     
-    const team_members_id = await Promise.all(
-      team_mates.map(async (member) => {
-        const p = await Participant.create({...member, university, event: event_id});
-        await p.save();
-        return p._id;
-      })
-    );
     // Add to db, then send an email verification link
     const registration = await Registration.create({
       team_name,
-      team_members: team_members_id,
+      team_members,
       phone_number,
       email,
       university,

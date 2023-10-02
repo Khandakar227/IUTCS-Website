@@ -10,4 +10,11 @@
 
 
 ## TODO
-1. Add Admin cookie middleware
+1. Add Admin cookie middleware [x]
+2. Admin Panel API
+3. verification mail
+4. Sign in with google
+
+## Done
+1. (2.10.23)
+    - Admin sign up, login, User model, middleware to verify admin.
