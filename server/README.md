@@ -14,7 +14,21 @@
 2. Admin Panel API
 3. verification mail
 4. Sign in with google
+5. Contact us api
 
 ## Done
 1. (2.10.23)
-    - Admin sign up, login, User model, middleware to verify admin.
+    - Admin sign up, login, Admin model, middleware to verify admin.
+
+## Roles
+#### Admin
+- get all registrations.
+- delete a registration.
+- sign up (might use firebase auth later).
+- login (might use firebase auth later).
+- create/delete/modify events.
+- view/update/delete leaderboard.
+
+#### User
+- create registrations for events.
+- (Sign up, login, login with google, verify email, forgot password will be handled by firebase from client side)

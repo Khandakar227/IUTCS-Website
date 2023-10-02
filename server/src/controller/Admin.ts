@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import User from "../model/User";
+import Admin from "../model/Admin";
 import { checkPasswordMatch, hashPassword } from "../libs/password";
 import { sign } from "jsonwebtoken";
 
 export const login = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({ email });
+        const user = await Admin.findOne({ email });
         if (!user)
           return res.status(401).json({ message: "Incorrect email or password" });
           const isPasswordMatched = checkPasswordMatch(
@@ -50,16 +50,16 @@ export const signUp = async (req: Request, res: Response) => {
             name, email, password
         } = req.body;
         
-        const checkEmail = await User.findOne({ email });
+        const checkEmail = await Admin.findOne({ email });
         if (checkEmail)
             return res.status(400).json({ message: "Email is already in use" });
 
         const hash = hashPassword(password); //Hash the password
-        const user = new User({
+        const user = new Admin({
             email,
             password: hash,
             name,
-            role: "user"
+            role: "admin"
         });
         await user.save();
         //

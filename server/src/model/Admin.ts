@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import { Schema, model } from "mongoose";
 
+// For now this will be used for Admin
 const userModel = new Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
@@ -11,6 +12,6 @@ const userModel = new Schema({
     signed_in: { type: Date, default: Date.now, required: true },
 })
 
-const User = model("Users", userModel);
+const Admin = model("Admins", userModel);
 
-export default User;
+export default Admin;
