@@ -14,7 +14,8 @@
 2. Admin Panel API
 3. verification mail
 4. Sign in with google
-5. Contact us api
+5. Contact us api [ Done ]
+6. get Contact API needs admin verification middleware
 
 ## Done
 1. (2.10.23)

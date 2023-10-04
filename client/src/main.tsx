@@ -41,7 +41,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/coderush",
-    element: <Layout><CodeRush/></Layout>,
+    element: <CodeRush/>,
   }
 ]);
 
