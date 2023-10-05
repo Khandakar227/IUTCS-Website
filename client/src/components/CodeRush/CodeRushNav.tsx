@@ -9,7 +9,7 @@ export default function CodeRushNav() {
       <div className="p-2 section flex justify-between items-center">
         <div>
           <Link to={"/"}>
-            <img className="h-10" src="iutcs-logo.svg" />
+            <img className="h-10" src="/iutcs-logo.svg" />
           </Link>
         </div>
         <div className="px-4">
@@ -20,7 +20,7 @@ export default function CodeRushNav() {
               </button>
             )
           ) : (
-            <Loader size={25} />
+            <Loader size={'xs'} />
           )}
         </div>
       </div>

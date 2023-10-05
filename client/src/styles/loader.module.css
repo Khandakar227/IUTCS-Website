@@ -1,0 +1,36 @@
+/* Loader */
+:root {
+  --loader-size: 48px;
+  --border-size: 48px;
+}
+.loader {
+  width: var(--loader-size);
+  height: var(--loader-size);
+  border-radius: 50%;
+  display: inline-block;
+  border-top: var(--border-size) solid #fff;
+  border-right: var(--border-size) solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--loader-size);
+  height: var(--loader-size);
+  border-radius: 50%;
+  border-left: var(--border-size) solid #00ccff;
+  border-bottom: var(--border-size) solid transparent;
+  animation: rotation 0.5s linear infinite reverse;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

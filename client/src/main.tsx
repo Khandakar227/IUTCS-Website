@@ -10,9 +10,11 @@ import Achievement from './pages/Achievement.tsx';
 import Activities from './pages/Activities.tsx';
 import Layout from './components/Layout.tsx';
 import ExecutiveCommittee from './pages/ExecutiveCommittee.tsx';
-import './index.css'
+import './styles/index.css'
 import Contact from './pages/Contact.tsx';
-import CodeRush from './pages/CodeRush.tsx';
+import CodeRush from './pages/CodeRush/index.tsx';
+import CodeRushLayout from './components/CodeRush/CodeRushLayout.tsx';
+import CodeRushRegister from './pages/CodeRush/Register.tsx';
 
 const router = createBrowserRouter([
   {
@@ -41,7 +43,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/coderush",
-    element: <CodeRush/>,
+    element: <CodeRushLayout><CodeRush/></CodeRushLayout>,
+  },
+  {
+    path: "/coderush/register",
+    element: <CodeRushLayout><CodeRushRegister/></CodeRushLayout>,
   }
 ]);
 
