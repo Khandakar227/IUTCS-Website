@@ -31,6 +31,7 @@ export default function AuthContextProvider(props: PropsWithChildren) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
         setUser(user);
         setLoading('loaded');
+        console.log(user)
     });
     return unsubscribe;
 }, []);

@@ -1,49 +1,32 @@
 import { Link, Navigate } from "react-router-dom";
-import { FaLock, FaUserAlt } from "react-icons/fa";
+import { FaLock } from "react-icons/fa";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import InputWithIcon from "../../components/InputWithIcon";
 import GoogleSignInButton from "../../components/CodeRush/GoogleSignInButton";
 import RegisterGuard from "../../components/CodeRush/RegisterGuard";
-import { useAuth } from "../../contexts/UserContext";
 import { FormEvent, useState } from "react";
+import { useAuth } from "../../contexts/UserContext";
 import { FirebaseError } from "firebase/app";
 import { getMsgFromFirebaseErrorCode } from "../../libs/firebaseError";
 
-const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
 
-export default function Register() {
+export default function Login() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const { signUp } = useAuth();
+    const { signIn } = useAuth();
 
-    async function onSignUp(e: FormEvent) {
+    async function onLogin(e:FormEvent) {
         e.preventDefault();
+        setError("")
         const formData = new FormData(e.target as HTMLFormElement);
         const data = Object.fromEntries(formData);
-        
-        if (data.password.length < 8) {
-            setError("Password must be of atleast length 8");
-            return;
-        }
-        
-        if (!PASSWORD_REGEX.test(data.password as string)) {
-            setError("Password must contain alphabets and numbers");
-            return;
-        }
-        if (data.password != data.confirm_password) {
-            setError("Confirm password did not match.");
-            return;
-        }
-        
-        setError("");
-        
         try {
             setLoading(true);
-            await signUp(data.name as string, data.email as string, data.password as string);
+            await signIn(data.email as string, data.password as string);
             Navigate({ to: "/coderush" });
         } catch (err) {
             const _err = err as FirebaseError;
-            console.log(_err.message);
+            console.log(_err.code);
             setError(getMsgFromFirebaseErrorCode(_err));
         } finally {
             setLoading(false);
@@ -56,18 +39,16 @@ export default function Register() {
             <GoogleSignInButton/>
             <p className="text-center py-12 font-medium">OR</p>
             <div>
-                <form onSubmit={onSignUp}>
-                    <InputWithIcon icon={<FaUserAlt/>} type="text" name="name" placeholder="Name" required/>
+                <form onSubmit={onLogin}>
                     <InputWithIcon icon={<MdOutlineAlternateEmail/>} type="email" name="email" placeholder="Email" required/>
                     <InputWithIcon icon={<FaLock/>} type="password" name="password" placeholder="Password" required/>
-                    <InputWithIcon icon={<FaLock/>} type="password" name="confirm_password" placeholder="Confirm Password" required/>
-                    <p className="py-4 text-red-600">{error}</p>
+                    <p className="py-4 text-red-500">{error}</p>
                     <div className="py-4">
-                        <button type="submit" disabled={loading} className="w-full py-2 px-4 bg-blue-600 font-medium rounded-md">{loading ? "Signing Up" : "Sign Up"}</button>
+                        <button type="submit" className="w-full py-2 px-4 bg-blue-600 font-medium rounded-md">{loading ? "Please Wait" : "Login"}</button>
                     </div>
                 </form>
                 <div className="py-12">
-                    <p>Already signed up before? <Link className="text-red-500 underline" to={"/coderush/login"}>Login</Link></p>
+                    <p>Don't have an account? <Link className="text-red-500 underline" to={"/coderush/register"}>Register</Link></p>
                 </div>
             </div>
         </div>
