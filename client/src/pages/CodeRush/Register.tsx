@@ -8,6 +8,7 @@ import { useAuth } from "../../contexts/UserContext";
 import { FormEvent, useState } from "react";
 import { FirebaseError } from "firebase/app";
 import { getMsgFromFirebaseErrorCode } from "../../libs/firebaseError";
+import { EVENT_URL_PATH } from "../../libs/urlPaths";
 
 const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
 
@@ -40,7 +41,7 @@ export default function Register() {
         try {
             setLoading(true);
             await signUp(data.name as string, data.email as string, data.password as string);
-            Navigate({ to: "/coderush" });
+            Navigate({ to: EVENT_URL_PATH.home });
         } catch (err) {
             const _err = err as FirebaseError;
             console.log(_err.message);
@@ -67,7 +68,7 @@ export default function Register() {
                     </div>
                 </form>
                 <div className="py-12">
-                    <p>Already signed up before? <Link className="text-red-500 underline" to={"/coderush/login"}>Login</Link></p>
+                    <p>Already signed up before? <Link className="text-red-500 underline" to={EVENT_URL_PATH.login}>Login</Link></p>
                 </div>
             </div>
         </div>

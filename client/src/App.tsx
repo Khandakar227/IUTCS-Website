@@ -14,6 +14,8 @@ import CodeRush from './pages/CodeRush/index.tsx';
 import CodeRushLayout from './components/CodeRush/CodeRushLayout.tsx';
 import CodeRushRegister from './pages/CodeRush/Register.tsx';
 import CodeRushLogin from './pages/CodeRush/Login.tsx';
+import { EVENT_URL_PATH } from "./libs/urlPaths.ts";
+import EventRegistraton from "./pages/CodeRush/EventRegistraton.tsx";
 
 const router = createBrowserRouter([
     {
@@ -41,16 +43,20 @@ const router = createBrowserRouter([
         element: <Layout><Contact /></Layout>,
     },
     {
-        path: "/coderush",
+        path: EVENT_URL_PATH.home,
         element: <CodeRushLayout><CodeRush /></CodeRushLayout>,
     },
     {
-        path: "/coderush/register",
+        path: EVENT_URL_PATH.register,
         element: <CodeRushLayout><CodeRushRegister /></CodeRushLayout>,
     },
     {
-        path: "/coderush/login",
+        path: EVENT_URL_PATH.login,
         element: <CodeRushLayout><CodeRushLogin /></CodeRushLayout>,
+    },
+    {
+        path: `${EVENT_URL_PATH.home}/registration/:eventId`,
+        element: <CodeRushLayout><EventRegistraton /></CodeRushLayout>,
     }
 ]);
 export default function App() {

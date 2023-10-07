@@ -8,6 +8,7 @@ import { FormEvent, useState } from "react";
 import { useAuth } from "../../contexts/UserContext";
 import { FirebaseError } from "firebase/app";
 import { getMsgFromFirebaseErrorCode } from "../../libs/firebaseError";
+import { EVENT_URL_PATH } from "../../libs/urlPaths";
 
 
 export default function Login() {
@@ -23,7 +24,7 @@ export default function Login() {
         try {
             setLoading(true);
             await signIn(data.email as string, data.password as string);
-            Navigate({ to: "/coderush" });
+            Navigate({ to: EVENT_URL_PATH.home });
         } catch (err) {
             const _err = err as FirebaseError;
             console.log(_err.code);
@@ -48,7 +49,7 @@ export default function Login() {
                     </div>
                 </form>
                 <div className="py-12">
-                    <p>Don't have an account? <Link className="text-red-500 underline" to={"/coderush/register"}>Register</Link></p>
+                    <p>Don't have an account? <Link className="text-red-500 underline" to={EVENT_URL_PATH.register}>Register</Link></p>
                 </div>
             </div>
         </div>
