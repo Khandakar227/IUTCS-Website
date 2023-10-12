@@ -3,6 +3,8 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -12,10 +14,12 @@ import { auth } from "../libs/firebase";
 
 type AuthContextProps = {
   user: User | null;
+  loading: 'not-loading' | 'loading' | 'loaded';
   signUp: (name: string, email: string, password: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   logOut: () => void;
-  loading: 'not-loading' | 'loading' | 'loaded';
+  sendEmailVerificationLink: () => Promise<void | null>;
+  resetPassword: (email:string) => Promise<void>;
 };
 
 const AuthContext = createContext({} as AuthContextProps);
@@ -55,9 +59,16 @@ export default function AuthContextProvider(props: PropsWithChildren) {
   async function logOut() {
     return signOut(auth);
   }
+  async function sendEmailVerificationLink() {
+    if(!auth.currentUser) return null;
+    return await sendEmailVerification(auth.currentUser);
+  }
+  async function resetPassword(email: string) {
+    return await sendPasswordResetEmail(auth, email);
+  }
   return (
     <>
-      <AuthContext.Provider value={{ user, signUp, signIn, logOut, loading }}>
+      <AuthContext.Provider value={{ user, loading, signUp, signIn, logOut, sendEmailVerificationLink, resetPassword }}>
         {props.children}
       </AuthContext.Provider>
     </>

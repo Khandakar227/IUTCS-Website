@@ -4,9 +4,11 @@ import Event from "../model/Event";
 
 export const createEvent = async (req: Request, res: Response) => {
     try {
-        const { name, event_date, registration_open, max_team_members } = req.body;
+        const {
+            name, description, event_start_date, event_end_date, registration_open, max_team_members
+        } = req.body;
         const event = await Event.create({
-            name, event_date, registration_open, max_team_members
+            name, description, event_start_date, event_end_date, registration_open, max_team_members
         });
         event.save();
         res.status(200).json({error: false, message: "Event created", event});
@@ -25,7 +27,8 @@ export const createEvent = async (req: Request, res: Response) => {
 
 export const getAllEvents = async (req: Request, res: Response) => {
     try {
-
+        const events = await Event.find();
+        res.status(200).json({error: false, events});
     } catch (err) {
         const error = err as Error;
         console.log(error.message);
@@ -37,6 +40,24 @@ export const getAllEvents = async (req: Request, res: Response) => {
         });
     }
 }
+
+export const getEvent = async (req: Request, res: Response) => {
+    try {
+        const { eventId } = req.params;
+        const eventInfo = Event.findById(eventId);
+        res.status(200).json({error: false, event: eventInfo});
+    } catch (err) {
+        const error = err as Error;
+        console.log(error.message);
+        res
+        .status(500)
+        .json({
+            error: true,
+            message: `Error occured on the server. ${error.message}`,
+        });
+    }
+}
+
 
 export const deleteEvent = async (req: Request, res: Response) => {
     try {

@@ -2,6 +2,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaUserAlt, FaEdit } from "react-icons/fa";
 import { FormEvent, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { CONTACT_API } from "../assets/api";
 
 export default function Contact() {
   const captchaRef = useRef({} as ReCAPTCHA);
@@ -28,7 +29,7 @@ export default function Contact() {
       };
       
       const response = await fetch(
-        `${import.meta.env.VITE_SERVER_URL}/v1/contact?captcha_token=${captcha_token}`,
+        `${CONTACT_API}?captcha_token=${captcha_token}`,
         { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }
       );
       const resData = await response.json();
