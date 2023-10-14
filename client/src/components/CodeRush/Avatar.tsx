@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useAuth } from "../../contexts/UserContext";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type AvatarProps = {
     displayName: string | null,
@@ -9,14 +9,17 @@ type AvatarProps = {
 
 export default function Avatar({ displayName, photoURL }: AvatarProps) {
     const [showUserMenu, setUserMenu] = useState(false);
+    const navigate = useNavigate();
     const { logOut } = useAuth();
 
     function clickHandler() {
         setUserMenu(!showUserMenu);
     }
     function onLogOut() {
+        const c = confirm("Are you sure you want to sign out now?");
+        if(!c) return;
         logOut();
-        Navigate({to: "/coderush"});
+        navigate("/coderush");
     }
     return (
         <div className="relative">

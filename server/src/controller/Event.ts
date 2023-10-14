@@ -44,7 +44,7 @@ export const getAllEvents = async (req: Request, res: Response) => {
 export const getEvent = async (req: Request, res: Response) => {
     try {
         const { eventId } = req.params;
-        const eventInfo = Event.findById(eventId);
+        const eventInfo = await Event.findById(eventId);
         res.status(200).json({error: false, event: eventInfo});
     } catch (err) {
         const error = err as Error;

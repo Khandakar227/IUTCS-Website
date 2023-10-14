@@ -14,7 +14,7 @@ const InputWithIcon = (props:InputWithIconProps) => {
         <input className="w-full p-3 rounded outline-none bg-primary-800"
             {...props}
         />
-    </div>       
+    </div>
     )
 }
 

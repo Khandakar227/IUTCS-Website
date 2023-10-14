@@ -1,11 +1,14 @@
 import {
+  GoogleAuthProvider,
   User,
   UserCredential,
   createUserWithEmailAndPassword,
+  getRedirectResult,
   onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithRedirect,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -16,10 +19,11 @@ type AuthContextProps = {
   user: User | null;
   loading: 'not-loading' | 'loading' | 'loaded';
   signUp: (name: string, email: string, password: string) => Promise<void>;
+  signInWithGoogle: () => void;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   logOut: () => void;
   sendEmailVerificationLink: () => Promise<void | null>;
-  resetPassword: (email:string) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 };
 
 const AuthContext = createContext({} as AuthContextProps);
@@ -33,12 +37,19 @@ export default function AuthContextProvider(props: PropsWithChildren) {
   useEffect(() => {
     setLoading('loading');
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-        setUser(user);
-        setLoading('loaded');
-        console.log(user)
+      setUser(user);
+      setLoading('loaded');
+      console.log(user)
     });
     return unsubscribe;
-}, []);
+  }, []);
+
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then(result => {
+        if(result?.user) setUser(result?.user)
+      })
+  }, []);
 
   const signUp = async (name: string, email: string, password: string) => {
     await createUserWithEmailAndPassword(auth, email, password);
@@ -55,12 +66,16 @@ export default function AuthContextProvider(props: PropsWithChildren) {
   async function signIn(email: string, password: string) {
     return signInWithEmailAndPassword(auth, email, password);
   }
+  function signInWithGoogle() {
+    const googleProvider = new GoogleAuthProvider();
+    signInWithRedirect(auth, googleProvider);
+  }
   // logout the current logged in user and set state of user to be null
   async function logOut() {
     return signOut(auth);
   }
   async function sendEmailVerificationLink() {
-    if(!auth.currentUser) return null;
+    if (!auth.currentUser) return null;
     return await sendEmailVerification(auth.currentUser);
   }
   async function resetPassword(email: string) {
@@ -68,7 +83,16 @@ export default function AuthContextProvider(props: PropsWithChildren) {
   }
   return (
     <>
-      <AuthContext.Provider value={{ user, loading, signUp, signIn, logOut, sendEmailVerificationLink, resetPassword }}>
+      <AuthContext.Provider value={{
+        user,
+        loading,
+        signUp,
+        signInWithGoogle,
+        signIn,
+        logOut,
+        sendEmailVerificationLink, 
+        resetPassword
+        }}>
         {props.children}
       </AuthContext.Provider>
     </>
