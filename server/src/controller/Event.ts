@@ -5,10 +5,10 @@ import Event from "../model/Event";
 export const createEvent = async (req: Request, res: Response) => {
     try {
         const {
-            name, description, event_start_date, event_end_date, registration_open, max_team_members
+            name, description, event_start_date, event_end_date, registration_open, max_team_members, registration_fee
         } = req.body;
         const event = await Event.create({
-            name, description, event_start_date, event_end_date, registration_open, max_team_members
+            name, description, event_start_date, event_end_date, registration_open, max_team_members, registration_fee
         });
         event.save();
         res.status(200).json({error: false, message: "Event created", event});

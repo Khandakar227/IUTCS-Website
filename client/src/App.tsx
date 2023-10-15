@@ -17,6 +17,8 @@ import CodeRushLogin from './pages/CodeRush/Login.tsx';
 import { EVENT_URL_PATH } from "./libs/urlPaths.ts";
 import EventRegistraton from "./pages/CodeRush/EventRegistraton.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
     {
@@ -67,6 +69,19 @@ const router = createBrowserRouter([
 export default function App() {
 
     return (
-        <RouterProvider router={router} />
+        <>
+            <RouterProvider router={router} />
+            <ToastContainer
+                position="top-right"
+                autoClose={false}
+                limit={5}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                theme="colored"
+            />
+        </>
     )
 }

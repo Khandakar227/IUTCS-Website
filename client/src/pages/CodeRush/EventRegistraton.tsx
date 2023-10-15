@@ -1,24 +1,22 @@
-import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { EVENT_GET_API } from "../../assets/api";
 import Loader from "../../components/Loader";
-import { EventProps, ParticipantProps, RegistrationProps } from "../../libs/types";
+import { EventProps } from "../../libs/types";
+import StepOne from "../../components/EventRegistration/StepOne";
+import RegContextProvider, { useRegistration } from "../../contexts/RegistrationContext";
+import StepTwo from "../../components/EventRegistration/StepTwo";
+import StepThree from "../../components/EventRegistration/StepThree";
 import { useAuth } from "../../contexts/UserContext";
 
-export default function EventRegistraton() {
+function MultiStepRegistration() {
   const { eventId } = useParams();
   const { user } = useAuth();
+  const { formData, setEmail, setEvent } = useRegistration();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [eventInfo, setEventInfo] = useState<EventProps | null>(null);
-  const [registrationDetails, setDetails] = useState<RegistrationProps>({
-    team_name: "",
-    team_members: [],
-    email: "",
-    event: ""
-  })
 
-  const [teammatesCount, setTeammatesCount] = useState(0);
 
   useEffect(() => {
     // send request to server to get event data
@@ -30,7 +28,7 @@ export default function EventRegistraton() {
           if (!data.event._id) setError("Not found");
           else {
             setEventInfo(data.event);
-            setDetails(v => ({...v || "", event: eventId as string}));
+            setEvent(data.event._id);
           }
           setLoading(false);
         })
@@ -44,26 +42,8 @@ export default function EventRegistraton() {
 
   useEffect(() => {
     if(!user?.email) return;
-    setDetails(v => ({...v, email: user.email || ""}));
-  }, [user])
-
-  useEffect(() => {
-    setDetails(v => {
-      if(v.team_members.length == teammatesCount) return v;
-      while(teammatesCount < v.team_members.length) {
-        v.team_members.pop();
-      }
-      return v;
-    })
-  }, [teammatesCount])
-
-
-  function onSubmit(e:FormEvent) {
-    e.preventDefault();
-    // const formData = new FormData(e.target as HTMLFormElement);
-    console.log(registrationDetails)
-  }
-
+    setEmail(user?.email);
+  }, [user?.email])
 
   if (loading)
     return (
@@ -85,98 +65,24 @@ export default function EventRegistraton() {
         <h1 className="font-semibold py-2 text-xl">{eventInfo?.name}</h1>
       </div>
       <div className="py-6">
-        <form onSubmit={onSubmit} className="mx-auto max-w-lg w-full">
-          <label htmlFor="team_name">Team Name:</label>
-          <input
-            className="my-2 w-full p-2 rounded outline-none bg-primary-800 shadow shadow-black"
-            type="text"
-            name="team_name"
-            id="team_name"
-          />
-          <label htmlFor="number_of_members" className="pt-4 block">
-            Number of teammates:
-          </label>
-          {Array(eventInfo?.max_team_members)
-            .fill("")
-            .map((_, i) => (
-              <label key={i + "_team_mates"} className="w-full block">
-                <input
-                  onClick={() => setTeammatesCount(i + 1)}
-                  className="my-2 h-4 w-4"
-                  type="radio"
-                  id={`teammates_count ${i + 1}`}
-                  name="number_of_members"
-                  value={i + 1}
-                />
-                <span className="px-2">{i + 1}</span>
-              </label>
-            ))}
-          <div className="pt-12">
-          {Array(teammatesCount).fill("")
-          .map((_, i) => (
-              <ParticipantsInputs setDetails={setDetails} key={`team_member_${i}`} i={i} />
-            ))}
-          </div>
-          <div className="py-8">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
+        {
+          formData.step == 1 ?
+          <StepOne max_team_members={eventInfo?.max_team_members || 0}/>
+          :
+          formData.step == 2 ?
+          <StepTwo />
+          : <StepThree regFee={eventInfo?.registration_fee || 0} />
+        }
       </div>
     </div>
   );
 }
 
-const ParticipantsInputs = ({i, setDetails}:{i:number, setDetails:Dispatch<SetStateAction<RegistrationProps>>}) => {
-  function onChange(e:ChangeEvent, idx: number) {
-    const el = (e.target as HTMLInputElement);
-
-    setDetails(v => {
-      if (!v.team_members[idx]) v.team_members[idx] = { name: "", email: "", institution: "", phone_number: ""}
-      const key = el.name.replace('team_members_', '') as keyof ParticipantProps;
-      v.team_members[idx][key] = el.value;
-      return v;
-    }) 
-  }
+export default function EventRegistration() {
   return (
-    <div className="pt-12">
-    <label>{i+1}{i == 0 ? "st" : i == 1 ? "nd" : i == 2 ? "rd" : "th"} Member's Info:</label>
-    <div className="pl-4">
-      <label className="text-sm" htmlFor={"team_member_name" + i}>Name:</label>
-      <input
-        onChange={(e) => onChange(e, i)}
-        className="my-2 w-full p-2 rounded outline-none bg-primary-800 shadow shadow-black"
-        type="text"
-        name="team_members_name"
-        id={"team_member_name" + i}
-      />
-
-      <label className="text-sm" htmlFor={"team_member.email" + i}>Email:</label>
-      <input
-        onChange={(e) => onChange(e, i)}
-        className="my-2 w-full p-2 rounded outline-none bg-primary-800 shadow shadow-black"
-        type="email"
-        name="team_members_email"
-        id={"team_member.email" + i}
-      />
-      
-      <label className="text-sm" htmlFor={"team_member.phone_number" + i}>Phone Number:</label>
-      <input
-        onChange={(e) => onChange(e, i)}
-        className="my-2 w-full p-2 rounded outline-none bg-primary-800 shadow shadow-black"
-        type="number"
-        name="team_members_phone_number"
-        id={"team_member.phone_number" + i}
-      />
-
-      <label className="text-sm" htmlFor={"team_member_" + i}>Institution Name:</label>
-      <input
-        onChange={(e) => onChange(e, i)}
-        className="my-2 w-full p-2 rounded outline-none bg-primary-800 shadow shadow-black"
-        type="text"
-        name="team_members.institution"
-        id={"team_member_" + i}
-      />
-    </div>
-  </div>
+    <RegContextProvider>
+      <MultiStepRegistration/>
+    </RegContextProvider>
   )
 }
+

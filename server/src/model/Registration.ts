@@ -15,6 +15,8 @@ const registrationModel = new Schema({
     status: { type: String, default: 'pending', required: true },
     verified: { type: Boolean, default: false, required: true },
     event: {type: ObjectId, ref: "Events"},
+    trxId: {type: String},
+    payment_phone_number: {type: String},
     created_at: { type: Date, default: Date.now, required: true },
 })
 
