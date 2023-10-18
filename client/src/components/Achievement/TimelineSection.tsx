@@ -27,6 +27,7 @@ export default function TimelineSection() {
                 <div className="time-line">
                     <Card
                     key={i + " " + year + "achievement"}
+                    title={achievement.title}
                     description={achievement.description}
                     timestamp={achievement.timestamp}
                     image={achievement.image}

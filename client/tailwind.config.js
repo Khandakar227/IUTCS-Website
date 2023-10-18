@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily: {
         poppins: ['Poppins', 'system-ui', 'sans-serif'],
-        kanit: ['Kanit', 'sans-serif']
+        kanit: ['Sora', 'sans-serif']
       },
       colors: {
         "primary-2": "#0b1627",

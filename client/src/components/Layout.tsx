@@ -16,9 +16,9 @@ export default function Layout({children}:PropsWithChildren) {
 
   return (
     <>
-        <Navbar currentPath={location.pathname}/>
+      <Navbar currentPath={location.pathname}/>
         {children}
-        <Footer />
+      <Footer />
     </>
   )
 }

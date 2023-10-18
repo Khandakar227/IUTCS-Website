@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;300;500;600;800&display=swap');
 @import 'sal.js/dist/sal.css';
 @tailwind base;
 @tailwind components;
@@ -66,6 +67,20 @@
 }
 .clip-nav-0{
   clip-path: circle(0% at 100% 25%);
+}
+/* INTRO  */
+.text-animation {
+  @apply overflow-hidden h-[1.5em];
+}
+.text-animation span {
+  animation: text-animation 8s var(--animation-delay) linear infinite;
+}
+@keyframes text-animation {
+  0% {margin-top: 0;}
+  10% {margin-top: 0;}
+  20% {margin-top: -6em;}
+  95% {margin-top: -6em;}
+  100% {margin-top: 0;}
 }
 /* Achievement card */
 .achievement-card {position: relative;}
