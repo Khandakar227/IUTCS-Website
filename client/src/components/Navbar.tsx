@@ -55,7 +55,7 @@ export default function Navbar({currentPath}:{currentPath:string}) {
             ))}
           </ul>
         </div>
-        <Link to={EVENT_URL_PATH.home} className="hidden md:block my-3 md:my-0 lg:px-5 px-2 py-2 rounded-3xl bg-white text-black font-semibold md:ml-2 lg:text-sm md:text-xs">
+        <Link to={EVENT_URL_PATH.home} className="hidden md:block my-3 md:my-0 lg:px-5 px-2 py-2 rounded-3xl bg-white text-black font-semibold md:ml-2 lg:text-sm md:text-xs transition hover:bg-blue-400">
             CodeRush 3.0 Register
         </Link>
       </div>

@@ -6,7 +6,7 @@ export default function IntroSection() {
     <div className="pb-32 bg-gradient-to-b from-blue-950 via-primary to-primary">
         <div className="min-h-main w-full grid place-items-center max-w-6xl mx-auto relative">
             <div className="text-center">
-                <p data-sal="slide-down" data-sal-delay="300" className="text-lg md:text-3xl lg:text-4xl">Islamic University of Technology</p>
+                <p data-sal="slide-down" data-sal-delay="300" className="md:text-3xl lg:text-4xl">Islamic University of Technology</p>
                 <ComputerSociety />
                 <p className="pt-10 md:text-2xl flex justify-center">
                     <span className="block">A community for</span>
