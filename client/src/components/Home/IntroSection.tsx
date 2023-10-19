@@ -1,134 +1,29 @@
 import { CSSProperties } from "react";
-import IntroCarousel, { IntroSlide } from "./IntroCarousel";
+import ComputerSociety from "./ComputerSociety";
 
 export default function IntroSection() {
-  function styleBg(imgUrl: string, backgroundPosition?: string): CSSProperties {
-    return {
-      backgroundImage: `url(${imgUrl})`,
-      backgroundRepeat: "no-repeat",
-      backgroundPosition: backgroundPosition || "left",
-      backgroundSize: "cover",
-    };
-  }
-
   return (
-    <div className="pb-32">
-      <div className="min-h-main w-full grid justify-center items-center md:grid-cols-2">
-        <div className="lg:pl-24 md:pl-8 px-4 py-20">
-          <p
-            className="text-blue-300"
-            data-sal="slide-down"
-            data-sal-delay="200"
-            data-sal-duration="500"
-          >
-            Welcome to IUT Computer Society
-          </p>
-          <h1
-            className="md:text-3xl text-xl pt-2 font-kanit"
-            data-sal="slide-down"
-            data-sal-delay="500"
-            data-sal-duration="500"
-          >
-            Discover our journey and commitment to the computer engineering
-            community.
-          </h1>
-          <p className="md:text-xl py-5" data-sal="slide-down" data-sal-delay="800" data-sal-duration="500">
-            Explore our mission, history, and the impact we've made over the
-            years. Join us in shaping the future of technology together.
-          </p>
+    <div className="pb-32 bg-gradient-to-b from-blue-950 via-primary to-primary">
+        <div className="min-h-main w-full grid place-items-center max-w-6xl mx-auto relative">
+            <div className="text-center">
+                <p data-sal="slide-down" data-sal-delay="300" className="md:text-3xl lg:text-4xl">Islamic University of Technology</p>
+                <ComputerSociety />
+                <p className="pt-10 md:text-2xl flex justify-center">
+                    <span className="block">A community for</span>
+                    <span className="text-animation text-left grid">
+                        <span style={{"--animation-delay": '2s'} as CSSProperties} className="underline underline-offset-4 md:underline-offset-8 pl-2 font-semibold decoration-blue-500">Developers </span>
+                        <span style={{"--animation-delay": '4s'} as CSSProperties} className="underline underline-offset-4 md:underline-offset-8 pl-2 font-semibold decoration-blue-500">Programmers </span>
+                        <span style={{"--animation-delay": '6s'} as CSSProperties} className="underline underline-offset-4 md:underline-offset-8 pl-2 font-semibold decoration-blue-500">Tech Enthusiasts </span>
+                        <span style={{"--animation-delay": '8s'} as CSSProperties} className="underline underline-offset-4 md:underline-offset-8 pl-2 font-semibold decoration-blue-500">Learners </span>
+                    </span>
+                </p>
+
+                <div className="pb-12 text-center flex justify-center absolute bottom-0 left-0 right-0">
+                    <img className="max-w-[100px] w-full" src="/intro-arrow-down.gif" alt="Arrow down" />
+                </div>
+                
+            </div>
         </div>
-        <div className="clip-path max-h-[calc(100vh - 66px)] h-full md:flex hidden overflow-hidden">
-          <IntroCarousel>
-            <IntroSlide>
-              <div
-                style={styleBg("development.jpg")}
-                className="intro-bg w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("CoU-BRACNet.jpg", "center")}
-                className="intro-bg w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("Intro_image_1.jpg", "center")}
-                className="intro-bg w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("ctf_champion.jpg")}
-                className="intro-bg w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("inter-iut-pc.jpg")}
-                className="intro-bg w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("hackathon_IUT_Pixel.jpg")}
-                className="intro-bg w-full"
-              />
-            </IntroSlide>
-          </IntroCarousel>
-        </div>
-
-        <div className="md:hidden flex overflow-hidden">
-          <IntroCarousel>
-            <IntroSlide>
-              <div
-                style={styleBg("development.jpg")}
-                className="intro-bg-mobile w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("CoU-BRACNet.jpg", "center")}
-                className="intro-bg-mobile w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("Intro_image_1.jpg", "center")}
-                className="intro-bg-mobile w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("ctf_champion.jpg")}
-                className="intro-bg-mobile w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("inter-iut-pc.jpg")}
-                className="intro-bg-mobile w-full"
-              />
-            </IntroSlide>
-
-            <IntroSlide>
-              <div
-                style={styleBg("hackathon_IUT_Pixel.jpg")}
-                className="intro-bg-mobile w-full"
-              />
-            </IntroSlide>
-          </IntroCarousel>
-        </div>
-      </div>
     </div>
-  );
+  )
 }

@@ -24,13 +24,13 @@ export const registrationValidations = [
  
   check("team_members.*.email").exists().isEmail()
 
-  .withMessage("Invalid team mate email or email is already used"),
+  .withMessage("One of your team mates email seems invalid"),
  
   check("team_members.*.phone_number").custom(async(v) => {
-    if(!(/^(01|\+8801)\d{9}$/.test(v))) throw new Error("Invalid phone number");
+    if(!(/^\d{10}$/.test(v))) throw new Error("Invalid phone number for a team member");
       return true;
     })
-    .withMessage("Invalid phone number or phone number is already used"),
+    .withMessage("One of your team mates phone number seems invalid"),
   ];
 
   // TODO

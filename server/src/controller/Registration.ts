@@ -21,7 +21,7 @@ export const getRegistration = async (req: Request, res: Response) => {
 
 export const createRegistration = async (req: Request, res: Response) => {
   try {
-    const { team_name, team_members, email, phone_number, university } =
+    const { team_name, team_members, email, phone_number, payment_phone_number, trxId } =
       req.body;
     const { event_id } = req.params;
     
@@ -31,7 +31,7 @@ export const createRegistration = async (req: Request, res: Response) => {
       team_members,
       phone_number,
       email,
-      university,
+      payment_phone_number, trxId,
       event: event_id,
       status: "pending",
     });
@@ -41,7 +41,7 @@ export const createRegistration = async (req: Request, res: Response) => {
       .status(200)
       .json({
         error: false,
-        message: "Registration successful. Check your mail to verify.",
+        message: "Registration successful.",
       });
   } catch (err) {
     const error = err as Error;

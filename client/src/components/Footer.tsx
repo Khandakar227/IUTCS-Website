@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="section">
             <div className="flex gap-4 flex-col md:flex-row">
               <div>
-                <img src="iutcs-logo.svg" alt="IUTCS LOGO" className="w-full max-w-[100px]" />
+                <img src="/iutcs-logo.svg" alt="IUTCS LOGO" className="w-full max-w-[100px]" />
                 <div className="flex gap-5 py-4">
                   <a href="https://www.facebook.com/IUTCS"><FaFacebook size={23}/></a>
                   <a href="https://github.com/iut-cse"><FaGithub size={23}/></a>

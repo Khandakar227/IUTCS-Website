@@ -4,6 +4,8 @@ import { connect } from "mongoose";
 import cors from "cors";
 import registrationRoutes from "./routes/v1/Registration";
 import leaderboardRoutes from "./routes/v1/Leaderboard";
+import contactRoutes from "./routes/v1/Contact";
+import eventRoutes from "./routes/v1/Event";
 
 dotenv.config();
 
@@ -30,8 +32,11 @@ connect(process.env.MONGODB_URL as string, {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/v1/contact", contactRoutes);
 app.use("/v1/register", registrationRoutes);
 app.use("/v1/leaderboard", leaderboardRoutes);
+app.use("/v1/event", eventRoutes);
+
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

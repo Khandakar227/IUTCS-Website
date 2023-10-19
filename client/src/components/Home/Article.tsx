@@ -20,7 +20,7 @@ function Article(props:ArticleProps) {
           <p className="pt-3 text-sm line-clamp-3">{props.desc}</p>
         </div>
         <div className="p-4 grid justify-end items-center">
-          <button className="bg-blue-600 px-4 py-1 rounded-full">Read More</button>
+          <button className="btn text-xs">Read More</button>
         </div>
     </div>
   )
