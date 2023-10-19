@@ -3,7 +3,7 @@ import { BsArrowUpRight } from 'react-icons/bs';
 export default function AboutSection() {
   return (
     <div className="section grid md:grid-cols-2 gap-4 py-24 circuit-bg-2 overflow-hidden">
-      <div className="grid lg:items-end">
+      <div className="grid lg:items-start">
         <div className="pb-10">
           <p
             className="text-blue-300"
@@ -20,7 +20,7 @@ export default function AboutSection() {
             Who we are and what we stand for.
           </h2>
           <button
-            className="border rounded-full px-4 py-2 font-semibold flex items-center justify-center gap-2"
+            className="btn flex items-center justify-center gap-2"
             data-sal="slide-down"
             data-sal-delay="600"
           >

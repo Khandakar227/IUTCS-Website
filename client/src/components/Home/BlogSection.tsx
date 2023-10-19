@@ -7,7 +7,7 @@ export default function BlogSection() {
         <div className="flex md:flex-row flex-col md:justify-between md:items-center md:grid-cols-2 gap-4">
             <p className="py-2 font-bold md:text-4xl text-3xl font-kanit w-full" data-sal="slide-down" data-sal-delay="500">Tech Tales, Insights and more</p>
             <div data-sal="slide-down" data-sal-delay="500">
-                <button className="bg-blue-600 rounded-full px-4 py-3 min-w-[130px] md:text-base text-sm"> See more </button>
+                <button className="btn min-w-[130px]"> See more </button>
             </div>
         </div>
         <div className="overflow-auto p-4">

@@ -1,14 +1,13 @@
 import { CSSProperties } from "react";
+import ComputerSociety from "./ComputerSociety";
 
 export default function IntroSection() {
   return (
     <div className="pb-32 bg-gradient-to-b from-blue-950 via-primary to-primary">
         <div className="min-h-main w-full grid place-items-center max-w-6xl mx-auto relative">
             <div className="text-center">
-                <p className="text-lg md:text-3xl lg:text-4xl">Islamic University of Technology</p>
-                <h1 className="font-bold text-[7vw] md:text-[6vw]">
-                    <span className="text-red-600">C</span>omputer <span className="text-red-600">S</span>ociety
-                </h1>
+                <p data-sal="slide-down" data-sal-delay="300" className="text-lg md:text-3xl lg:text-4xl">Islamic University of Technology</p>
+                <ComputerSociety />
                 <p className="pt-10 md:text-2xl flex justify-center">
                     <span className="block">A community for</span>
                     <span className="text-animation text-left grid">

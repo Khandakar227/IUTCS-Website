@@ -16,7 +16,7 @@ export default function TeamSection() {
             className="pt-12"
             data-sal="slide-right" data-sal-duration="400" data-sal-delay="600"
             >
-                <Link to={"/executive"} className="bg-blue-600 font-medium px-4 py-3 rounded-3xl shadow shadow-black">Full Executive Committee</Link>
+                <Link to={"/executive"} className="btn">Full Executive Committee</Link>
             </div>
         </div>
         <div data-sal="slide-left" data-sal-duration="500" className="grid lg:grid-cols-2 gap-4 activities">

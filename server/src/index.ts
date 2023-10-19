@@ -37,6 +37,7 @@ app.use("/v1/register", registrationRoutes);
 app.use("/v1/leaderboard", leaderboardRoutes);
 app.use("/v1/event", eventRoutes);
 
+
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });

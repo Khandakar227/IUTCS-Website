@@ -31,7 +31,7 @@ export default function Navbar({currentPath}:{currentPath:string}) {
     {pathname == "/" && (<div className="absolute top-0 left-0 right-0 min-h-[70px] bg-blue-950"></div>)}
     
     <nav className="sticky top-0 z-10 p-3 rounded-b-md rounded-bl-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 border border-gray-800">
-      <div className="flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div>
           <Link to={"/"}>
             <img className="h-10" src="iutcs-logo.svg" />
