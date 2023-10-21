@@ -2,9 +2,9 @@
   import BlogWriter from "./BlogWriter.svelte";
 
 </script>
-<div class="min-h-screen p-4">
-    <h2 class="text-2xl pb-8 font-bold"> ADMIN PANEL </h2>
-    <div class="grid justify-center items-center md:grid-cols-2">
+<div class="min-h-screen">
+    <h2 class="text-2xl mb-8 font-bold p-2 bg-gray-950"> ADMIN PANEL </h2>
+    <div class="grid justify-center items-center md:grid-cols-2 p-4">
       <div></div>
       <BlogWriter/>
     </div>

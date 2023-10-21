@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+- [Live](#live)
 - [Features](#features)
 - [Folder Structure](#folder-structure)
 - [Getting Started](#getting-started)
@@ -11,13 +12,19 @@
 - [Contact](#contact)
 - [TODO](#todo)
 
+## Live
+Home page: [http://iutcs.pages.dev](http://iutcs.pages.dev)
+Admin Dashborad: Not hosted yet
+Server Endpoint: [https://iutcs-server.onrender.com](https://iutcs-server.onrender.com)
+
 ## Features
 
 - Full-stack application showcasing IUTCS.
 - Client-side built with React, TypeScript, and Vite.
 - Server-side built with TypeScript and Express.
-- Separated client and server folders for easy development and deployment.
-- Utilizes Tailwind CSS for styling.
+- Admin panel built with TypeScript and Svelte.
+- Separated client, admin and server folders for easy development and deployment.
+- Utilized Tailwind CSS for styling.
 
 ## Folder Structure
 
@@ -56,10 +63,4 @@ The project is organized into two main folders:
 
 
 ## TODO
-
-- Overflow on activities page on mobile (due to animations)
 - Executive page
-- Blogs with mardown files
-- Admin panel
-- Admin Panel api
-- Registration page for Intra and Inter IUT Programming Contest (optional: All other contests)
