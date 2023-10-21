@@ -3,12 +3,13 @@ import Admin from "../model/Admin";
 import { checkPasswordMatch, hashPassword } from "../libs/password";
 import { sign } from "jsonwebtoken";
 
-export const login = async (req: Request, res: Response) => {
+
+export const loginAsAdmin = async (req: Request, res: Response) => {
     try {
-        const { email, password } = req.body;
-        const user = await Admin.findOne({ email });
+        const { username, password } = req.body;
+        const user = await Admin.findOne({ username });
         if (!user)
-          return res.status(401).json({ message: "Incorrect email or password" });
+          return res.status(401).json({ message: "Incorrect username or password" });
           const isPasswordMatched = checkPasswordMatch(
             password,
             user.password as string
@@ -22,7 +23,7 @@ export const login = async (req: Request, res: Response) => {
         const userInfo = {
             email: user.email,
             _id: user._id,
-            name: user.name,
+            username: user.username,
             role: user.role,
             verified: user.verified,
           };
@@ -40,14 +41,16 @@ export const login = async (req: Request, res: Response) => {
                 user: { ...userInfo, expiresIn: 3_600_000 * 4 },
               });
     } catch (error) {
-        
+        const err = error as Error;
+        console.log(error);
+        res.status(500).json({ error: true, message: `Something went wrong. ${err.message}` });
     }
 }
 
-export const signUp = async (req: Request, res: Response) => {
+export const signUpAsAdmin = async (req: Request, res: Response) => {
     try {
         const {
-            name, email, password
+            username, email, password
         } = req.body;
         
         const checkEmail = await Admin.findOne({ email });
@@ -58,13 +61,11 @@ export const signUp = async (req: Request, res: Response) => {
         const user = new Admin({
             email,
             password: hash,
-            name,
+            username,
             role: "admin"
         });
         await user.save();
-        //
-        // Verification mail should be send
-        //
+ 
         res.status(201).json({
             error: false,
             message:
@@ -75,5 +76,31 @@ export const signUp = async (req: Request, res: Response) => {
         const err = error as Error;
         console.log(error);
         res.status(500).json({ error: true, message: `Something went wrong. ${err.message}` });
+    }
+}
+
+
+export const getAdmin = async (req: Request, res: Response) => {
+    try {
+        const admin = res.locals.user;
+        if (!admin.email || admin.role != 'admin')
+            return res.status(403).json({error: true, message: "Unauthorized"});
+      
+        const adminDetails = await Admin.findOne({email: admin.email, username: admin.username});
+        if(!adminDetails)
+            return res.clearCookie('access_token')
+                      .status(401).json({error: true, message: "The Admin account is deleted or doesn't exist"});
+      
+        return res.status(200).json({ error: false, admin: adminDetails });
+
+    } catch (error) {
+        const err = error as Error;
+        console.log(err.message);
+        res
+        .status(500)
+        .json({
+            error: true,
+            message: `Unexpected error occured on the server. ${err.message}`,
+        });
     }
 }

@@ -29,8 +29,8 @@ export default function ComputerSociety() {
                         {
                             text.map((w, i) =>
                                 <span key={i + "text"}
-                                    style={{ "--animation-delay": `${(i + 1) * 50}ms` } as CSSProperties}
-                                    className={`${w.className} min-w-[0.5em] inline-block ${isVisible ? styles['slide-down-animation'] : ""}`}>
+                                    style={{ "--animation-delay": `${i * 50}ms` } as CSSProperties}
+                                    className={`${w.className} min-w-[0.5em] inline-block ${styles['preanimation']} ${isVisible ? styles['slide-down-animation'] : ""}`}>
                                     {w.t}
                                 </span>)
                         }

@@ -9,15 +9,19 @@ export const verifyAdmin = async (
   next: NextFunction
 ) => {
   try {
+    if(!req.cookies)
+      return res.status(403).json({ error: true, message: "You are not authorized" });
+   
     const token = verify(
       req.cookies["access_token"],
       process.env.JWT_SECRET as string
     );
+
     // Verify cookie for admin
     if (token && typeof token !== "string" && token.role === "admin") {
         res.locals.user = token;
         next();
-    } else return res.status(403).json({ message: "You are not authorized" });
+    } else return res.status(403).json({ error: true, message: "You are not authorized" });
 
   } catch (err) {
     const error = err as Error;

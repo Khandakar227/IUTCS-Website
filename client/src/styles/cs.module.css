@@ -1,6 +1,8 @@
+.preanimation {
+  opacity: 0;
+  transform: translateY(-50%);
+}
 .slide-down-animation {
-    opacity: 0;
-    transform: translateY(-50%);
     animation: slide-down-animation 1s var(--animation-delay) forwards;
   }
   @keyframes slide-down-animation {

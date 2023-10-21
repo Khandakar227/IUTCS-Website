@@ -8,7 +8,7 @@ const eventRoutes = express.Router();
 
 eventRoutes.get("/", getAllEvents);
 eventRoutes.get("/:eventId", getEvent);
-eventRoutes.post("/", ...createEventValidations, validationErrorHandler, verifyAdmin, createEvent);
+eventRoutes.post("/", ...createEventValidations, validationErrorHandler, createEvent);
 eventRoutes.put("/:eventId", verifyAdmin, updateEvent);
 eventRoutes.delete("/:eventId", verifyAdmin, deleteEvent);
 

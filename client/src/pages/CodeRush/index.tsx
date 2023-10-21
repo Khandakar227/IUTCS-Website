@@ -33,7 +33,7 @@ export default function CodeRush() {
           {
           loading ? (<Loader size="md"/>)
           :
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gao-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {
               events.map(ev => 
                 <Link to={`${EVENT_URL_PATH.home}/event/registration/${ev._id}`} key={ev._id} className="block p-4 rounded-md shadow-black shadow bg-blue-700">
