@@ -72,7 +72,7 @@ export default function App() {
 
     useEffect(() => {
         fetch(SERVER_API)
-        .then((res)=> res.json());
+        .then((res)=> res.text());
     })
 
     return (

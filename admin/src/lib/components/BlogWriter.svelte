@@ -106,7 +106,7 @@
   
   
   
-  <div class="rounded-md shadow bg-secondary p-4 max-w-xl">
+  <div class="rounded-md shadow bg-secondary p-4 max-w-3xl">
       <h2 class="text-xl font-semibold pb-4">Write a blog</h2>
       <input class="my-1 p-2 border shadow-sm w-full bg-primary-800" placeholder="Title" type="text" name="title" id="title">
       <input class="my-1 p-2 border shadow-sm w-full bg-primary-800" placeholder="URL" type="text" name="url" id="title">
@@ -126,9 +126,12 @@
       </div>
 
       <div bind:this={element} class="shadow bg-secondary border editor" />
-      <div class="flex gap-4 my-8 justify-end">
-        <button class="px-4 py-1 bg-orange-400">Draft</button>
-        <button class="px-4 py-1 bg-red-600">Publish</button>
+      <div class="flex gap-4 my-8 justify-between items-center">
+        <button class="px-4 py-1 bg-white text-black">Preview</button>
+        <div>
+          <button class="px-4 py-1 bg-orange-400">Draft</button>
+          <button class="px-4 py-1 bg-red-600">Publish</button>
+        </div>
       </div>
 </div>
 

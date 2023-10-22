@@ -23,7 +23,6 @@ app.use(
   })
 );
 
-
 connect(process.env.MONGODB_URL as string, {
   dbName: process.env.DBNAME,
 })

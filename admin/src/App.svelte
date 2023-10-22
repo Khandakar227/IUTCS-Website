@@ -1,11 +1,13 @@
 <script lang="ts">
   import { Router, Route } from "svelte-routing";
-  import {BootstrapToast, ToastContainer, toasts} from 'svelte-toasts'
+  import {BootstrapToast, ToastContainer} from 'svelte-toasts'
   import {ADMIN_API_URL} from './lib/configs/api';
   
   import Home from "./lib/pages/Home.svelte";
   import { onMount } from "svelte";
   import { admin } from "./lib/stores/admin";
+  import EventDetail from "./lib/pages/event/EventDetail.svelte";
+  import RegistrationDetail from "./lib/pages/event/RegistrationDetail.svelte";
   
   export let url = "";
   let loading = true;
@@ -33,6 +35,8 @@
 
 <Router {url}>
   <Route path="/"><Home {loading} /></Route>
+  <Route path="event/details/:id" let:params><EventDetail id={params.id}/></Route>
+  <Route path="event/registration/:id" let:params><RegistrationDetail id={params.id}/></Route>
 </Router>
 <ToastContainer let:data={data}>
 <BootstrapToast {data} />

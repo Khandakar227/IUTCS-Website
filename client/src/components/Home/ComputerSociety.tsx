@@ -25,7 +25,7 @@ export default function ComputerSociety() {
         <VisibilitySensor>
             {
                 ({ isVisible }:{isVisible:boolean}) =>
-                    <h1 className="font-bold text-[7vw] md:text-[6vw]">
+                    <h1 className="font-bold text-2xl sm:text-5xl md:text-7xl lg:text-8xl">
                         {
                             text.map((w, i) =>
                                 <span key={i + "text"}
