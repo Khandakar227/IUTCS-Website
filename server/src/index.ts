@@ -35,6 +35,10 @@ connect(process.env.MONGODB_URL as string, {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.status(200).send("OK");
+});
+
 app.use("/v1/admin", adminRoutes);
 app.use("/v1/contact", contactRoutes);
 app.use("/v1/register", registrationRoutes);

@@ -14,7 +14,14 @@
 
 ## Live
 Home page: [http://iutcs.pages.dev](http://iutcs.pages.dev)
-Admin Dashborad: Not hosted yet
+
+Admin Dashborad:[http://admin-iutcs.netlify.app](http://admin-iutcs.netlify.app)
+
+ Admin credentials:
+ ```
+    Username: shakibalhasan
+    Password: Shasan410
+ ```
 Server Endpoint: [https://iutcs-server.onrender.com](https://iutcs-server.onrender.com)
 
 ## Features

@@ -19,6 +19,8 @@ import EventRegistraton from "./pages/CodeRush/EventRegistraton.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { SERVER_API } from "./assets/api.ts";
 
 const router = createBrowserRouter([
     {
@@ -67,6 +69,11 @@ const router = createBrowserRouter([
     }
 ]);
 export default function App() {
+
+    useEffect(() => {
+        fetch(SERVER_API)
+        .then((res)=> res.json());
+    })
 
     return (
         <>
