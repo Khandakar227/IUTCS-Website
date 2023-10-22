@@ -159,4 +159,6 @@
     background: #2563EB;
     border-radius: 2rem;
   }
-
+.committee-wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

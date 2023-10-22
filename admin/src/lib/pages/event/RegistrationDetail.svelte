@@ -109,8 +109,13 @@
                                         <p>{member?.institution}</p>
                                     </td>
                                 {/each}
-                                <td class="whitespace-nowrap text-center">{registration?.payment_phone_number && 0}{registration?.payment_phone_number}</td>
-                                <td class="whitespace-nowrap text-center">{registration?.trxId}</td>
+                                <td class="whitespace-nowrap text-center">
+                                    {registration?.payment_phone_number && 0}
+                                    {registration?.payment_phone_number ? registration?.payment_phone_number : ""}
+                                </td>
+                                <td class="whitespace-nowrap text-center">
+                                    {registration?.trxId ? registration?.trxId : ""}
+                                </td>
                             </tr>
                           {/each}
                       </tbody>
@@ -131,5 +136,8 @@
     }
     td {
         padding: 0.5rem;
+    }
+    tbody tr:nth-child(even) {
+        background-color: #001927;
     }
 </style>
