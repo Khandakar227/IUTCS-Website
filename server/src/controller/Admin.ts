@@ -31,7 +31,6 @@ export const loginAsAdmin = async (req: Request, res: Response) => {
         const token = sign(userInfo, process.env.JWT_SECRET as string, {
             expiresIn: 3_600_000 * 4,
         });
-        console.log(token);
           res
             .status(200)
             .cookie("access_token", token, { maxAge: 3_600_000 * 4, httpOnly: true, sameSite: 'none' })
