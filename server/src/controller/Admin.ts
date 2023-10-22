@@ -33,7 +33,7 @@ export const loginAsAdmin = async (req: Request, res: Response) => {
         });
           res
             .status(200)
-            .cookie("access_token", token, { maxAge: 3_600_000 * 4, httpOnly: true, sameSite: 'none' })
+            .cookie("access_token", token, { maxAge: 3_600_000 * 4, httpOnly: true, sameSite: 'none', secure: true })
             .json({
                 error: false,
                 message: "logged in",
